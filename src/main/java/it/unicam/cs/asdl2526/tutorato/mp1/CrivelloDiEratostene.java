@@ -41,7 +41,7 @@ public class CrivelloDiEratostene {
      */
     private final int capacity;
 
-    // TODO definire ulteriori variabili istanza che si ritengono necessarie per
+    private int counter;
     // implementare tutti i metodi
 
     /**
@@ -56,9 +56,25 @@ public class CrivelloDiEratostene {
      *                                      minore di {@code 2}
      */
     public CrivelloDiEratostene(int capacity) {
+        if (capacity < 2)
+            throw new IllegalArgumentException();
+
         this.capacity = capacity;
         this.crivello = new boolean[this.capacity + 1];
-        // TODO implementare
+        this.counter = 2;
+
+        this.crivello[2] = true;
+        for (int i = 3; i <= this.capacity; i = i + 2)
+            this.crivello[i] = true;
+
+        for (int i = 3; i <= this.capacity / i; i++) {
+            if (this.crivello[i]){
+                for (int j = i * i; j <= this.capacity; j = j + i + i){
+                    this.crivello[j] = false;
+                }
+            }
+        }
+
     }
 
     /**
@@ -85,8 +101,9 @@ public class CrivelloDiEratostene {
      *                                      2.
      */
     public boolean isPrime(int n) {
-        // TODO implementare
-        return false;
+        if (n < 2 || n > this.capacity)
+            throw new IllegalArgumentException("");
+        return this.crivello[n];
     }
 
     /**
@@ -104,7 +121,13 @@ public class CrivelloDiEratostene {
      *         numeri primi di questo crivello.
      */
     public boolean hasNextPrime() {
-        // TODO implementare
+        while (this.counter <= this.capacity) {
+            if (this.crivello[this.counter]) {
+                return true;
+            } else {
+                this.counter++;
+            }
+        }
         return false;
     }
 
@@ -122,8 +145,12 @@ public class CrivelloDiEratostene {
      *                                   ancora fatto ripartire.
      */
     public int nextPrime() {
-        // TODO implementare
-        return -1;
+        if (!hasNextPrime())
+            throw new IllegalStateException("");
+
+        int nextPrime = this.counter++;
+
+        return nextPrime;
     }
 
     /**
@@ -133,7 +160,7 @@ public class CrivelloDiEratostene {
      * comunque di ricominciare da 2.
      */
     public void restartPrimeIteration() {
-        // TODO implementare
+        this.counter = 2;
     }
 
     // TODO inserire eventuali metodi accessori privati per fini di
