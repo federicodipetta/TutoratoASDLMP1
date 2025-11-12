@@ -1,5 +1,11 @@
 package it.unicam.cs.asdl2526.tutorato.mp1;
 
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * Un fattorizzatore è un agente che fattorizza un qualsiasi numero naturale nei
  * sui fattori primi.
@@ -28,8 +34,33 @@ public class Factoriser {
      *                                      numero minore di 1.
      */
     public Factor[] getFactors(int n) {
-        // TODO implementare
-        return null;
+        List<Factor> factors = new LinkedList<>();
+        if (n < 1) {
+            throw new IllegalArgumentException("n < 1");
+        }
+
+        if (n == 1)
+            return new Factor[0];
+
+        int size = n /2 + 1;
+        CrivelloDiEratostene crivelloDiEratostene = new CrivelloDiEratostene(size);
+
+        while (crivelloDiEratostene.hasNextPrime()) {
+            int prime = crivelloDiEratostene.nextPrime();
+            int mult = 0;
+            while (n % prime == 0) {
+                mult++;
+                n /= prime;
+            }
+            if (mult != 0)
+                factors.add(new Factor(prime, mult));
+        }
+
+        if (factors.size() == 0){
+            return new Factor[] { new Factor(n, 1)};
+        }
+
+        return factors.toArray(new Factor[factors.size()]);
     }
 
     // TODO inserire eventuali metodi accessori privati per fini di
