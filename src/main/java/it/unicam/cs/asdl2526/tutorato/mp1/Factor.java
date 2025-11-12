@@ -1,5 +1,7 @@
 package it.unicam.cs.asdl2526.tutorato.mp1;
 
+import java.util.Objects;
+
 /**
  * Un oggetto di quest classe rappresenta un fattore primo di un numero naturale
  * con una certa molteplicità.
@@ -38,7 +40,8 @@ public class Factor implements Comparable<Factor> {
      *                                      uguale di 0.
      */
     public Factor(int primeValue, int multiplicity) {
-        // TODO implementare
+        if (primeValue <= 0 || multiplicity < 1)
+            throw new IllegalArgumentException();
         this.primeValue = primeValue;
         this.multiplicity = multiplicity;
     }
@@ -57,24 +60,16 @@ public class Factor implements Comparable<Factor> {
         return multiplicity;
     }
 
-    /*
-     * Calcola l'hashcode dell'oggetto in accordo ai valori usati per definire
-     * il metodo equals.
-     */
     @Override
-    public int hashCode() {
-        // TODO implentare
-        return -1;
+    public boolean equals(Object o) {
+        if (!(o instanceof Factor)) return false;
+        Factor factor = (Factor) o;
+        return primeValue == factor.primeValue && multiplicity == factor.multiplicity;
     }
 
-    /*
-     * Due oggetti Factor sono uguali se e solo se hanno lo stesso numero primo
-     * e la stessa molteplicità
-     */
     @Override
-    public boolean equals(Object obj) {
-        // TODO implementare
-        return false;
+    public int hashCode() {
+        return Objects.hash(primeValue, multiplicity);
     }
 
     /*
@@ -84,8 +79,9 @@ public class Factor implements Comparable<Factor> {
      */
     @Override
     public int compareTo(Factor o) {
-        // TODO implementare
-        return 0;
+        int compare = Integer.compare(this.primeValue, o.primeValue);
+        if (compare == 0) return Integer.compare(this.multiplicity, o.multiplicity);
+        return compare;
     }
 
     /*
@@ -93,11 +89,9 @@ public class Factor implements Comparable<Factor> {
      */
     @Override
     public String toString() {
-        // TODO implementare
-        return "";
+        return this.primeValue + "^" + this.multiplicity;
     }
 
-    // TODO inserire eventuali metodi accessori privati per fini di
     // implementazione
 
 }
