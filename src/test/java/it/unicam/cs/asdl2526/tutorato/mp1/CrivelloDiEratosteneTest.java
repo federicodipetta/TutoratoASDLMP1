@@ -123,27 +123,27 @@ class CrivelloDiEratosteneTest {
 
         c.restartPrimeIteration();
 
-        assertEquals(c.nextPrime(), 2);
-        assertEquals(c.nextPrime(), 3);
-        assertEquals(c.nextPrime(), 5);
-        assertEquals(c.nextPrime(), 7);
-        assertEquals(c.nextPrime(), 11);
-        assertEquals(c.nextPrime(), 13);
+        assertEquals(2, c.nextPrime());
+        assertEquals(3, c.nextPrime());
+        assertEquals(5, c.nextPrime());
+        assertEquals(7, c.nextPrime());
+        assertEquals(11, c.nextPrime());
+        assertEquals(13, c.nextPrime());
 
         c.restartPrimeIteration();
 
-        assertEquals(c.nextPrime(), 2);
-        assertEquals(c.nextPrime(), 3);
-        assertEquals(c.nextPrime(), 5);
+        assertEquals(2, c.nextPrime());
+        assertEquals(3, c.nextPrime());
+        assertEquals(5, c.nextPrime());
 
         c.restartPrimeIteration();
 
-        assertEquals(c.nextPrime(), 2);
-        assertEquals(c.nextPrime(), 3);
-        assertEquals(c.nextPrime(), 5);
-        assertEquals(c.nextPrime(), 7);
-        assertEquals(c.nextPrime(), 11);
-        assertEquals(c.nextPrime(), 13);
+        assertEquals(2, c.nextPrime());
+        assertEquals(3, c.nextPrime());
+        assertEquals(5, c.nextPrime());
+        assertEquals(7, c.nextPrime());
+        assertEquals(11, c.nextPrime());
+        assertEquals(13, c.nextPrime());
     }
 
     @Test
@@ -157,12 +157,12 @@ class CrivelloDiEratosteneTest {
         c.restartPrimeIteration();
         c.restartPrimeIteration();
 
-        assertEquals(c.nextPrime(), 2);
-        assertEquals(c.nextPrime(), 3);
-        assertEquals(c.nextPrime(), 5);
-        assertEquals(c.nextPrime(), 7);
-        assertEquals(c.nextPrime(), 11);
-        assertEquals(c.nextPrime(), 13);
+        assertEquals(2, c.nextPrime());
+        assertEquals(3, c.nextPrime());
+        assertEquals(5, c.nextPrime());
+        assertEquals(7, c.nextPrime());
+        assertEquals(11, c.nextPrime());
+        assertEquals(13, c.nextPrime());
 
     }
 
@@ -175,9 +175,9 @@ class CrivelloDiEratosteneTest {
                 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101 };
         int capacity = 102;
         CrivelloDiEratostene c = new CrivelloDiEratostene(capacity);
-        for (int i = 0; i < primes.length; i++) {
+        for (int prime : primes) {
             assertTrue(c.hasNextPrime());
-            c.nextPrime();
+            assertEquals(prime, c.nextPrime());
         }
         assertFalse(c.hasNextPrime());
     }
@@ -200,8 +200,8 @@ class CrivelloDiEratosteneTest {
                 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101 };
         int capacity = 101;
         CrivelloDiEratostene c = new CrivelloDiEratostene(capacity);
-        for (int i = 0; i < primes.length; i++) {
-            assertEquals(c.nextPrime(), primes[i]);
+        for (int prime : primes) {
+            assertEquals(c.nextPrime(), prime);
         }
     }
 
@@ -209,7 +209,7 @@ class CrivelloDiEratosteneTest {
     void testValidNextPrime2() {
         int capacity = 2;
         CrivelloDiEratostene c = new CrivelloDiEratostene(capacity);
-        assertEquals(c.nextPrime(), 2);
+        assertEquals(2, c.nextPrime());
 
     }
 

@@ -22,8 +22,7 @@ package it.unicam.cs.asdl2526.tutorato.mp1;
  * qualsiasi momento chiamando il metodo restartPrimeIteration() e si interrompe
  * non appena il metodo hasNextPrime() restituisce false.
  * 
- * @author Luca Tesei (template) // TODO INSERIRE NOME, COGNOME ED EMAIL
- *         xxxx@studenti.unicam.it DELLO STUDENTE (implementazione)
+ * @author Luca Tesei (template)
  *
  */
 public class CrivelloDiEratostene {
@@ -34,7 +33,7 @@ public class CrivelloDiEratostene {
      * vengono usate. L'ultima posizione dell'array deve essere uguale alla
      * capacità del crivello.
      */
-    private boolean[] crivello;
+    private final boolean[] crivello;
 
     /*
      * Capacità del crivello, immutabile
@@ -162,8 +161,5 @@ public class CrivelloDiEratostene {
     public void restartPrimeIteration() {
         this.counter = 2;
     }
-
-    // TODO inserire eventuali metodi accessori privati per fini di
-    // implementazione
 
 }

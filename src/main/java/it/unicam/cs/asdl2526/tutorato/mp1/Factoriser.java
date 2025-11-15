@@ -1,8 +1,6 @@
 package it.unicam.cs.asdl2526.tutorato.mp1;
 
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -52,7 +50,7 @@ public class Factoriser {
                 factors.add(new Factor(prime, mult));
         }
 
-        if (factors.size() == 0) {
+        if (factors.isEmpty()) {
             return new Factor[] { new Factor(n, 1)};
         }
 

@@ -49,13 +49,13 @@ public class Shelf {
      * caso di necessità viene raddoppiato nel momento che si poggia un nuovo
      * oggetto che fa superare la capacità dell'array.
      */
-    private ShelfItem[] items;
+    private final ShelfItem[] items;
 
     /*
      * variabile che indica il numero corrente di caselle nell'array che sono
      * occupate
      */
-    private int numberOfItems;
+    private final int numberOfItems;
 
     // TODO definire ulteriori variabili istanza che si ritengono necessarie per
     // implementare tutti i metodi

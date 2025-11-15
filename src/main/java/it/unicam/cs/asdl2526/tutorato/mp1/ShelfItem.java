@@ -11,17 +11,17 @@ public interface ShelfItem {
     /**
      * @return la lunghezza dell'oggetto
      */
-    public double getLength();
+    double getLength();
 
     /**
      * @return la larghezza dell'oggetto
      */
-    public double getWidth();
+    double getWidth();
 
     /**
      * @return il peso dell'oggetto
      */
-    public double getWeight();
+    double getWeight();
 
     /**
      * Restituisce l'area occupata dall'oggetto sulla superficie della mensola.

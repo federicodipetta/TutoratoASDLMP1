@@ -6,8 +6,7 @@ import java.util.Objects;
  * Un oggetto di quest classe rappresenta un fattore primo di un numero naturale
  * con una certa molteplicità.
  * 
- * @author Luca Tesei (template) // TODO INSERIRE NOME, COGNOME ED EMAIL
- *         xxxx@studenti.unicam.it DELLO STUDENTE (implementazione)
+ * @author Luca Tesei (template)
  *
  */
 public class Factor implements Comparable<Factor> {
@@ -22,9 +21,6 @@ public class Factor implements Comparable<Factor> {
      * uguale a 1.
      */
     private final int multiplicity;
-
-    // TODO definire ulteriori variabili istanza che si ritengono necessarie per
-    // implementare tutti i metodi
 
     /**
      * Crea un fattore primo di un numero naturale, formato da un numero primo e
@@ -91,7 +87,5 @@ public class Factor implements Comparable<Factor> {
     public String toString() {
         return this.primeValue + "^" + this.multiplicity;
     }
-
-    // implementazione
 
 }
