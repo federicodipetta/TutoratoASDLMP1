@@ -10,14 +10,11 @@ import java.util.List;
  * Un fattorizzatore è un agente che fattorizza un qualsiasi numero naturale nei
  * sui fattori primi.
  * 
- * @author Luca Tesei (template) // TODO INSERIRE NOME, COGNOME ED EMAIL
- *         xxxx@studenti.unicam.it DELLO STUDENTE (implementazione)
+ * @author Luca Tesei (template)
  *
  */
 public class Factoriser {
 
-    // TODO definire ulteriori variabili istanza che si ritengono necessarie per
-    // implementare tutti i metodi
 
     /**
      * Fattorizza un numero restituendo la sequenza crescente dei suoi fattori
@@ -43,10 +40,9 @@ public class Factoriser {
             return new Factor[0];
 
         int size = n /2 + 1;
-        CrivelloDiEratostene crivelloDiEratostene = new CrivelloDiEratostene(size);
+        CrivelloDiEratostene c = new CrivelloDiEratostene(size);
 
-        while (crivelloDiEratostene.hasNextPrime()) {
-            int prime = crivelloDiEratostene.nextPrime();
+        for (int prime = c.nextPrime(); c.hasNextPrime(); prime = c.nextPrime() ) {
             int mult = 0;
             while (n % prime == 0) {
                 mult++;
@@ -56,13 +52,11 @@ public class Factoriser {
                 factors.add(new Factor(prime, mult));
         }
 
-        if (factors.size() == 0){
+        if (factors.size() == 0) {
             return new Factor[] { new Factor(n, 1)};
         }
 
         return factors.toArray(new Factor[factors.size()]);
     }
 
-    // TODO inserire eventuali metodi accessori privati per fini di
-    // implementazione
 }
