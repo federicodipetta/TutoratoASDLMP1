@@ -3,6 +3,8 @@
  */
 package it.unicam.cs.asdl2526.tutorato.mp1;
 
+import java.util.Objects;
+
 /**
  * Un oggetto di questa classe rappresenta una lampada che ha un appoggio
  * circolare. Implementa l'interfaccia ShelfItem, ma come lunghezza e larghezza
@@ -50,8 +52,7 @@ public class RoundLamp implements ShelfItem {
      */
     @Override
     public double getOccupiedSurface() {
-        // TODO implementare
-        return Double.NaN;
+        return Math.PI * Math.pow(diameter / 2, 2);
     }
 
     /*
@@ -96,27 +97,17 @@ public class RoundLamp implements ShelfItem {
         return brandName;
     }
 
-    /*
-     * Due lampade sono considerate uguali se hanno lo stesso nome e lo stesso
-     * nome del brand.
-     */
     @Override
-    public boolean equals(Object obj) {
-        // TODO implementare
-        return false;
+    public boolean equals(Object o) {
+        if (!(o instanceof RoundLamp)) return false;
+        RoundLamp roundLamp = (RoundLamp) o;
+        return Objects.equals(name, roundLamp.name) && Objects.equals(brandName, roundLamp.brandName);
     }
 
-    /*
-     * L'hashcode viene calcolato usando gli stessi campi usati per definire
-     * l'uguaglianza
-     */
     @Override
     public int hashCode() {
-        // TODO implementare
-        return -1;
+        return Objects.hash(name, brandName);
     }
 
-    // TODO inserire eventuali metodi accessori privati per fini di
-    // implementazione
 
 }

@@ -49,14 +49,16 @@ public class Shelf {
      * caso di necessità viene raddoppiato nel momento che si poggia un nuovo
      * oggetto che fa superare la capacità dell'array.
      */
-    private final ShelfItem[] items;
+    private ShelfItem[] items;
 
     /*
      * variabile che indica il numero corrente di caselle nell'array che sono
      * occupate
      */
-    private final int numberOfItems;
+    private int numberOfItems;
 
+    private double totalWeight;
+    private double totalOccupiedSurface;
     // TODO definire ulteriori variabili istanza che si ritengono necessarie per
     // implementare tutti i metodi
 
@@ -85,7 +87,8 @@ public class Shelf {
         this.maxTotalWeight = maxTotalWeight;
         this.items = new ShelfItem[INITIAL_SIZE];
         this.numberOfItems = 0;
-        // TODO implementare
+        this.totalWeight = 0;
+        this.totalOccupiedSurface = 0;
     }
 
     /**
@@ -109,8 +112,43 @@ public class Shelf {
      *                                      se l'oggetto passato è null
      */
     public boolean addItem(ShelfItem i) {
-        // TODO implementare
-        return false;
+        if (i == null)
+            throw new NullPointerException("Item is null");
+
+        if (i.getLength() > maxLength)
+            throw new IllegalArgumentException("Item is too long");
+
+        if (i.getWidth() > maxWidth)
+            throw new IllegalArgumentException("Item is too long");
+
+        if (this.getCurrentTotalWeight() + i.getWeight() > this.maxTotalWeight)
+            throw new IllegalArgumentException("Exceeds max total weight");
+
+        if (this.getCurrentTotalOccupiedSurface() + i.getOccupiedSurface() > this.maxOccupableSurface)
+            throw new IllegalArgumentException("Exceeds max occupable surface");
+
+        for (ShelfItem item : this.items) {
+            if (i.equals(item))
+                return false;
+        }
+
+        if (this.numberOfItems == this.items.length) {
+            this.items = resizeItemsArray();
+        }
+
+        this.items[this.numberOfItems++] = i;
+        this.totalWeight += i.getWeight();
+        this.totalOccupiedSurface += i.getOccupiedSurface();
+
+        return true;
+    }
+
+    private ShelfItem[] resizeItemsArray() {
+        ShelfItem[] newItems = new ShelfItem[this.items.length * 2];
+        for (int i = 0; i < this.items.length; i++) {
+            newItems[i] = this.items[i];
+        }
+        return newItems;
     }
 
     /**
@@ -126,7 +164,13 @@ public class Shelf {
      *                                  se l'oggetto passato è null
      */
     public ShelfItem search(ShelfItem i) {
-        // TODO implementare
+        if (i == null) {
+            throw new NullPointerException("Item is null");
+        }
+        for (ShelfItem item : this.items) {
+            if (i.equals(item))
+                return item;
+        }
         return null;
     }
 
@@ -148,8 +192,7 @@ public class Shelf {
      * @return the currentTotalWeight
      */
     public double getCurrentTotalWeight() {
-        // TODO implementare
-        return Double.NaN;
+        return this.totalWeight;
     }
 
     /**
@@ -157,7 +200,7 @@ public class Shelf {
      */
     public double getCurrentTotalOccupiedSurface() {
         // TODO implementare
-        return Double.NaN;
+        return this.totalOccupiedSurface;
     }
 
     /**

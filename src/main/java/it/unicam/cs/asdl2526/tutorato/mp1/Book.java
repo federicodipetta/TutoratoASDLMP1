@@ -3,6 +3,8 @@
  */
 package it.unicam.cs.asdl2526.tutorato.mp1;
 
+import java.util.Objects;
+
 /**
  * Un oggetto di questa classe rappresenta un libro. Oltre le informazioni
  * tipiche ci sono la lunghezza, la larghezza e il peso. Queste servono per
@@ -113,22 +115,16 @@ public class Book implements ShelfItem {
         return iSBN;
     }
 
-    /*
-     * Due libri sono uguali se e solo se hanno lo stesso codice ISBN.
-     */
     @Override
-    public boolean equals(Object obj) {
-        // TODO implementare
-        return false;
+    public boolean equals(Object o) {
+        if (!(o instanceof Book)) return false;
+        Book book = (Book) o;
+        return Objects.equals(iSBN, book.iSBN);
     }
 
-    /*
-     * Hashcode definito in base all'ISBN, per compatibilità con equals.
-     */
     @Override
     public int hashCode() {
-        // TODO implementare
-        return -1;
+        return Objects.hashCode(iSBN);
     }
 
     // TODO inserire eventuali metodi accessori privati per fini di
